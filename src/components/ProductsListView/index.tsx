@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductView from '../ProductView';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -19,7 +19,7 @@ const ProductsListView = ({ sortMethod }: ProductsListViewProps) => {
   const { data } = useGetProductsQuery();
   const [sortedData, setsortedData] = useState<IProduct[] | undefined>(data);
 
-  useMemo(() => {
+  useEffect(() => {
     if (data != null) {
       const sorted = [...data].sort((a, b) =>
         sortMethod === 'count'

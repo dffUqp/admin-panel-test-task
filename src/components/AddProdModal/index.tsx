@@ -9,11 +9,11 @@ import { useCreateProductMutation } from '../../services/product';
 import ModalContent from '../ModalContent';
 
 type AddProdModalProps = {
-  open: boolean;
-  handleClose: () => void;
+  isOpen: boolean;
+  toggleModal: () => void;
 };
 
-const AddProdModal = ({ open, handleClose }: AddProdModalProps) => {
+const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
   const {
     register,
     formState: { errors },
@@ -26,7 +26,6 @@ const AddProdModal = ({ open, handleClose }: AddProdModalProps) => {
   const [createdProduct] = useCreateProductMutation();
 
   const onSubmit = (data: EditedProduct) => {
-
     const result: EditedProduct = {
       ...data,
       count: Number(data.count),
@@ -39,13 +38,17 @@ const AddProdModal = ({ open, handleClose }: AddProdModalProps) => {
     reset();
   };
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="md">
-      <DialogTitle>Subscribe</DialogTitle>
+    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
+      <DialogTitle>Add New Product</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent register={register} errors={errors} />
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={toggleModal}>Cancel</Button>
           <Button type="submit">Add</Button>
         </DialogActions>
       </form>

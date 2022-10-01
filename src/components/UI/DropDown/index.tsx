@@ -1,14 +1,15 @@
 import React from 'react';
 import { MenuItem, FormControl, Select } from '@mui/material';
 import { SelectProps } from '@mui/material';
+import { DropDownOption } from '../../../ts/dropDownTypes';
 
 type DrowDownProps = {
-  option: { value: string; name: string }[];
+  options: DropDownOption[];
   value: string;
   setValue: (value: string) => void;
 } & SelectProps;
 
-const DropDowm = ({ option, value, setValue }: DrowDownProps) => {
+const DropDown = ({ options, value, setValue }: DrowDownProps) => {
   return (
     <FormControl sx={{ padding: '10px' }}>
       <Select
@@ -21,7 +22,7 @@ const DropDowm = ({ option, value, setValue }: DrowDownProps) => {
         }}
         inputProps={{ 'aria-label': 'Without label' }}
       >
-        {option.map((item) => (
+        {options.map((item) => (
           <MenuItem key={item.value} value={item.value}>
             {item.name}
           </MenuItem>
@@ -31,4 +32,4 @@ const DropDowm = ({ option, value, setValue }: DrowDownProps) => {
   );
 };
 
-export default DropDowm;
+export default DropDown;

@@ -6,25 +6,31 @@ import { TableCell, TableRow } from '@mui/material';
 import { IProduct } from '../../ts/productTypes';
 import { useDeleteProductMutation } from '../../services/product';
 import EditProdModal from '../EditProdModal';
+import WarningAlert from '../WarningAlert';
 
-const ProductView = (item: IProduct) => {
-  const { id, name, count, weight, imageUrl } = item;
+const ProductView = (currentProduct: IProduct) => {
+  const { id, name, count, weight, imageUrl } = currentProduct;
 
-  const [open, setOpen] = React.useState(false);
+  const [editModaOpen, setEditModaOpen] = React.useState(false);
+  const [warnAlert, setWarnAlert] = React.useState(false);
+
   const [deleteProduct] = useDeleteProductMutation();
 
-  const handleOpen = () => {
-    setOpen(true);
+  const toggleWarnAlert = () => {
+    setWarnAlert((prev) => !prev);
   };
-  const handleClose = () => {
-    setOpen(false);
+
+  const toggleEditModal = () => {
+    setEditModaOpen((prev) => !prev);
+  };
+
+  const deleteFunc = () => {
+    toggleWarnAlert();
+    deleteProduct(id);
   };
 
   return (
-    <TableRow
-      key={id}
-      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
+    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
       <TableCell component="th" scope="row">
         {id}
       </TableCell>
@@ -34,17 +40,27 @@ const ProductView = (item: IProduct) => {
       <TableCell>{imageUrl}</TableCell>
 
       <TableCell align="right">
-        <IconButton aria-label="delete" color="primary" onClick={handleOpen}>
-          <EditIcon />
-        </IconButton>
-        <EditProdModal open={open} handleClose={handleClose} editValue={item} />
         <IconButton
           aria-label="delete"
-          color="error"
-          onClick={() => deleteProduct(id)}
+          color="primary"
+          onClick={toggleEditModal}
         >
+          <EditIcon />
+        </IconButton>
+        <EditProdModal
+          isOpen={editModaOpen}
+          toggleModal={toggleEditModal}
+          editValue={currentProduct}
+        />
+
+        <IconButton aria-label="delete" color="error" onClick={toggleWarnAlert}>
           <DeleteIcon />
         </IconButton>
+        <WarningAlert
+          isOpen={warnAlert}
+          toggle={toggleWarnAlert}
+          toogleWithAction={deleteFunc}
+        />
       </TableCell>
     </TableRow>
   );

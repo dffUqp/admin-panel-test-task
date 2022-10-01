@@ -11,8 +11,8 @@ import Comments from './partials/Comments';
 import { EditProdModalProps } from './EditProdModal.props';
 
 const EditProdModal = ({
-  open,
-  handleClose,
+  isOpen,
+  toggleModal,
   editValue,
 }: EditProdModalProps) => {
   const {
@@ -36,12 +36,16 @@ const EditProdModal = ({
       },
     };
     editProduct(result);
-    handleClose();
+    toggleModal();
   };
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="md">
-      <DialogTitle>Subscribe</DialogTitle>
+    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
+      <DialogTitle>Edit Product Info</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent
           register={register}
@@ -50,8 +54,8 @@ const EditProdModal = ({
         />
         <Comments productId={editValue.id} comments={editValue.comments} />
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Add</Button>
+          <Button onClick={toggleModal}>Cancel</Button>
+          <Button type="submit">Edit</Button>
         </DialogActions>
       </form>
     </Dialog>

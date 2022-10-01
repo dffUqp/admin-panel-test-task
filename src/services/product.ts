@@ -6,8 +6,8 @@ export const productApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
   tagTypes: ['Product'],
   endpoints: (build) => ({
-    getProducts: build.query<IProduct[], void>({
-      query: () => '/products/?_embed=comments',
+    getProducts: build.query<IProduct[], void | number>({
+      query: (limit = 20) => `/products/?_embed=comments&_limit=${limit}`,
       providesTags: (result) => ['Product'],
     }),
     createProduct: build.mutation<IProduct, EditedProduct>({

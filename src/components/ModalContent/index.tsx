@@ -20,6 +20,7 @@ const ModalContent = ({
       <DefaultInput
         labelName="Name"
         sx={{ width: '100%', padding: '5px 0 20px' }}
+        error={!!errors.name}
         defaultValue={defaultValues?.name ?? ''}
         {...register('name', { required: true })}
       />
@@ -31,12 +32,13 @@ const ModalContent = ({
           pattern: /^\d+$/,
           maxLength: 10,
         })}
-        defaultValue={defaultValues?.count ?? ''}
         error={!!errors.count}
+        defaultValue={defaultValues?.count ?? ''}
       />
       <DefaultInput
-        labelName="imageUrl"
+        labelName="ImageUrl"
         sx={{ width: '100%', padding: '5px 0 20px' }}
+        error={!!errors.imageUrl}
         defaultValue={defaultValues?.imageUrl ?? ''}
         {...register('imageUrl', { required: true })}
       />
@@ -66,8 +68,9 @@ const ModalContent = ({
       />
 
       <DefaultInput
-        labelName="weight"
+        labelName="Weight"
         sx={{ width: '100%', padding: '5px 0 20px' }}
+        error={!!errors.weight}
         defaultValue={defaultValues?.weight ?? ''}
         {...register('weight', { required: true })}
       />
