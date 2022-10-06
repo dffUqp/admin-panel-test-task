@@ -27,12 +27,17 @@ const Comments = ({ comments, productId }: commentEditorProps) => {
   const [addComment] = useAddCommentMutation();
 
   const SubmitHandler = () => {
-    addComment({ ...newComment, productId });
-    setAddCommentMenu((prev) => !prev);
-    setNewComment({
-      description: '',
-      date: '',
-    });
+    const isValidValue =
+      newComment.date.trim() && newComment.description.trim();
+
+    if (isValidValue) {
+      addComment({ ...newComment, productId });
+      setAddCommentMenu((prev) => !prev);
+      setNewComment({
+        description: '',
+        date: '',
+      });
+    }
   };
 
   return (
