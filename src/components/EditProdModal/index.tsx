@@ -25,6 +25,10 @@ const EditProdModal = ({
 
   const [updateProduct] = useUpdateProductMutation();
 
+  if (!isOpen) {
+    return null;
+  }
+
   const onSubmit = (data: EditedProduct) => {
     const prevData: EditedProduct = {
       name: editValue.name,
@@ -37,13 +41,9 @@ const EditProdModal = ({
     if (!(JSON.stringify(data) === JSON.stringify(prevData))) {
       updateProduct({ product: data, id: editValue.id });
     }
-    
+
     toggleModal();
   };
-
-  if (!isOpen) {
-    return null;
-  }
 
   return (
     <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">

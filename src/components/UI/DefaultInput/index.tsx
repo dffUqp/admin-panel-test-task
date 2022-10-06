@@ -1,13 +1,11 @@
 import React, { forwardRef, useId } from 'react';
 import { TextField } from '@mui/material';
-import styled from 'styled-components';
 import { DefaultInputProps } from './DefaultInput.props';
+import { styled, experimental_sx as sx } from '@mui/system';
 
-export const Mylabel = styled.label`
-  font-family: Roboto;
-  font-size: 17px;
-  color: black;
-`;
+export const Mylabel = styled('label')(
+  sx({ color: 'text.primary', fontFamily: 'Roboto', fontSize: '17px' })
+);
 
 const DefaultInput = forwardRef(
   ({ labelName, ...props }: DefaultInputProps, ref) => {

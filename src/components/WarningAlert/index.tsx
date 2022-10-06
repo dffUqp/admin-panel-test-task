@@ -17,6 +17,10 @@ const WarningAlert = ({
   toggle,
   toogleWithAction,
 }: WarningAlertProps) => {
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <Dialog
       open={isOpen}
