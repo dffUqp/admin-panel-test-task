@@ -25,22 +25,27 @@ const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
 
   const [createdProduct] = useCreateProductMutation();
 
-  const onSubmit = (data: EditedProduct) => {    
-    createdProduct(data);
-    reset();
-  };
-
   if (!isOpen) {
     return null;
   }
 
+  const onSubmit = (data: EditedProduct) => {
+    createdProduct(data);
+    reset();
+  };
+
+  const toggleWithReset = () => {
+    toggleModal();
+    reset();
+  };
+
   return (
-    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
+    <Dialog open={isOpen} onClose={toggleWithReset} maxWidth="md">
       <DialogTitle>Add New Product</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent register={register} errors={errors} />
         <DialogActions>
-          <Button onClick={toggleModal}>Cancel</Button>
+          <Button onClick={toggleWithReset}>Cancel</Button>
           <Button type="submit">Add</Button>
         </DialogActions>
       </form>
