@@ -19,6 +19,7 @@ const EditProdModal = ({
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<EditedProduct>({
     mode: 'onBlur',
   });
@@ -42,11 +43,16 @@ const EditProdModal = ({
       updateProduct({ product: data, id: editValue.id });
     }
 
+    toggleModal()
+  };
+
+  const toggleWithReset = () => {
     toggleModal();
+    reset();
   };
 
   return (
-    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
+    <Dialog open={isOpen} onClose={toggleWithReset} maxWidth="md">
       <DialogTitle>Edit Product Info</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent
@@ -56,7 +62,7 @@ const EditProdModal = ({
         />
         <Comments productId={editValue.id} comments={editValue.comments} />
         <DialogActions>
-          <Button onClick={toggleModal}>Cancel</Button>
+          <Button onClick={toggleWithReset}>Cancel</Button>
           <Button type="submit">Edit</Button>
         </DialogActions>
       </form>
