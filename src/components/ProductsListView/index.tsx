@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ProductView from '../ProductView';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useGetProductsQuery } from '../../services/product';
 import { Box, Container } from '@mui/material';
-import { IProduct } from '../../ts/productTypes';
 
 type ProductsListViewProps = {
   sortMethod: string;
@@ -17,18 +16,10 @@ type ProductsListViewProps = {
 
 const ProductsListView = ({ sortMethod }: ProductsListViewProps) => {
   const { data } = useGetProductsQuery();
-  const [sortedData, setsortedData] = useState<IProduct[] | undefined>(data);
 
-  useEffect(() => {
-    if (data != null) {
-      const sorted = [...data].sort((a, b) =>
-        sortMethod === 'count'
-          ? a.count - b.count
-          : a.name.localeCompare(b.name)
-      );
-      setsortedData(sorted);
-    }
-  }, [data, sortMethod]);
+  const sortedData = [...(data || [])].sort((a, b) =>
+    sortMethod === 'count' ? a.count - b.count : a.name.localeCompare(b.name)
+  );
 
   return (
     <Container maxWidth="xl">
@@ -46,7 +37,7 @@ const ProductsListView = ({ sortMethod }: ProductsListViewProps) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {sortedData?.map((item) => (
+              {sortedData.map((item) => (
                 <ProductView key={item.id} {...item} />
               ))}
             </TableBody>

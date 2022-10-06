@@ -10,7 +10,7 @@ export const Mylabel = styled.label`
 `;
 
 const DefaultInput = forwardRef(
-  ({ labelName = '', ...props }: DefaultInputProps, ref) => {
+  ({ labelName, ...props }: DefaultInputProps, ref) => {
     const id = useId();
 
     return (

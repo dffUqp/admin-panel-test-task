@@ -21,7 +21,7 @@ const ModalContent = ({
         labelName="Name"
         sx={{ width: '100%', padding: '5px 0 20px' }}
         error={!!errors.name}
-        defaultValue={defaultValues?.name ?? ''}
+        defaultValue={defaultValues?.name}
         {...register('name', { required: true })}
       />
       <DefaultInput
@@ -29,17 +29,18 @@ const ModalContent = ({
         sx={{ width: '100%', padding: '5px 0 20px' }}
         {...register('count', {
           required: true,
-          pattern: /^\d+$/,
+          validate: (value) => value > 0,
+          valueAsNumber: true,
           maxLength: 10,
         })}
         error={!!errors.count}
-        defaultValue={defaultValues?.count ?? ''}
+        defaultValue={defaultValues?.count}
       />
       <DefaultInput
         labelName="ImageUrl"
         sx={{ width: '100%', padding: '5px 0 20px' }}
         error={!!errors.imageUrl}
-        defaultValue={defaultValues?.imageUrl ?? ''}
+        defaultValue={defaultValues?.imageUrl}
         {...register('imageUrl', { required: true })}
       />
 
@@ -49,29 +50,31 @@ const ModalContent = ({
         placeholder="width"
         {...register('size.width', {
           required: true,
-          pattern: /^\d+$/,
+          validate: (value) => value > 0,
+          valueAsNumber: true,
           maxLength: 10,
         })}
         error={!!errors.size?.width}
-        defaultValue={defaultValues?.size.width ?? ''}
+        defaultValue={defaultValues?.size.width}
       />
       <DefaultInput
         sx={{ width: '50%', padding: '5px 0 20px' }}
         placeholder="height"
         {...register('size.height', {
           required: true,
-          pattern: /^\d+$/,
+          validate: (value) => value > 0,
+          valueAsNumber: true,
           maxLength: 10,
         })}
         error={!!errors.size?.height}
-        defaultValue={defaultValues?.size.height ?? ''}
+        defaultValue={defaultValues?.size.height}
       />
 
       <DefaultInput
         labelName="Weight"
         sx={{ width: '100%', padding: '5px 0 20px' }}
         error={!!errors.weight}
-        defaultValue={defaultValues?.weight ?? ''}
+        defaultValue={defaultValues?.weight}
         {...register('weight', { required: true })}
       />
     </DialogContent>

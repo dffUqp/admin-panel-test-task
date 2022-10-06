@@ -25,16 +25,8 @@ const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
 
   const [createdProduct] = useCreateProductMutation();
 
-  const onSubmit = (data: EditedProduct) => {
-    const result: EditedProduct = {
-      ...data,
-      count: Number(data.count),
-      size: {
-        width: Number(data.size.width),
-        height: Number(data.size.height),
-      },
-    };
-    createdProduct(result);
+  const onSubmit = (data: EditedProduct) => {    
+    createdProduct(data);
     reset();
   };
 

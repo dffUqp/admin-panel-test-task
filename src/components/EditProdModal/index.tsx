@@ -4,7 +4,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useForm } from 'react-hook-form';
 import { Button } from '@mui/material';
-import { EditedProduct, IProduct } from '../../ts/productTypes';
+import { EditedProduct } from '../../ts/productTypes';
 import { useUpdateProductMutation } from '../../services/product';
 import ModalContent from '../ModalContent';
 import Comments from './partials/Comments';
@@ -23,19 +23,21 @@ const EditProdModal = ({
     mode: 'onBlur',
   });
 
-  const [editProduct] = useUpdateProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
 
   const onSubmit = (data: EditedProduct) => {
-    const result: IProduct = {
-      ...data,
-      id: editValue.id,
-      count: Number(data.count),
-      size: {
-        width: Number(data.size.width),
-        height: Number(data.size.height),
-      },
+    const prevData: EditedProduct = {
+      name: editValue.name,
+      count: editValue.count,
+      imageUrl: editValue.imageUrl,
+      size: editValue.size,
+      weight: editValue.weight,
     };
-    editProduct(result);
+
+    if (!(JSON.stringify(data) === JSON.stringify(prevData))) {
+      updateProduct({ product: data, id: editValue.id });
+    }
+    
     toggleModal();
   };
 

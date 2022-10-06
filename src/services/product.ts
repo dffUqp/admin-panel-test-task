@@ -7,7 +7,7 @@ export const productApi = createApi({
   tagTypes: ['Product'],
   endpoints: (build) => ({
     getProducts: build.query<IProduct[], void | number>({
-      query: (limit = 20) => `/products/?_embed=comments&_limit=${limit}`,
+      query: (limit = 20) => `/products?limit=${limit}`,
       providesTags: (result) => ['Product'],
     }),
     createProduct: build.mutation<IProduct, EditedProduct>({
@@ -18,9 +18,12 @@ export const productApi = createApi({
       }),
       invalidatesTags: ['Product'],
     }),
-    updateProduct: build.mutation<IProduct, IProduct>({
-      query: (product) => ({
-        url: `/products/${product.id}`,
+    updateProduct: build.mutation<
+      IProduct,
+      { product: EditedProduct; id: number }
+    >({
+      query: ({ product, id }) => ({
+        url: `/products/${id}`,
         method: 'PATCH',
         body: product,
       }),

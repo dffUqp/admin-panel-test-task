@@ -27,9 +27,8 @@ const Comments = ({ comments, productId }: commentEditorProps) => {
   const [addComment] = useAddCommentMutation();
 
   const SubmitHandler = () => {
-    setNewComment({ description: '', date: '' });
-    addComment({ ...newComment, productId });
     setAddCommentMenu((prev) => !prev);
+    addComment({ ...newComment, productId });
   };
 
   return (
@@ -61,12 +60,14 @@ const Comments = ({ comments, productId }: commentEditorProps) => {
             onChange={(e) =>
               setNewComment({ ...newComment, description: e.target.value })
             }
+            placeholder="description"
           />
           <DefaultInput
             value={newComment.date}
             onChange={(e) =>
               setNewComment({ ...newComment, date: e.target.value })
             }
+            placeholder="date"
           />
 
           <IconButton onClick={SubmitHandler}>
