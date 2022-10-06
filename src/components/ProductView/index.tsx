@@ -59,7 +59,7 @@ const ProductView = (currentProduct: IProduct) => {
         <WarningAlert
           isOpen={warnAlert}
           toggle={toggleWarnAlert}
-          toogleWithAction={deleteFunc}
+          toggleWithAction={deleteFunc}
         />
       </TableCell>
     </TableRow>

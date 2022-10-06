@@ -2,7 +2,7 @@ import React from 'react';
 import DialogContent from '@mui/material/DialogContent';
 import { FieldErrorsImpl, UseFormRegister } from 'react-hook-form';
 import { EditedProduct } from '../../ts/productTypes';
-import DefaultInput, { Mylabel } from '../UI/DefaultInput';
+import DefaultInput, { Label } from '../UI/DefaultInput';
 
 type ModalContentProps = {
   register: UseFormRegister<EditedProduct>;
@@ -44,7 +44,7 @@ const ModalContent = ({
         {...register('imageUrl', { required: true })}
       />
 
-      <Mylabel style={{ display: 'block' }}>Size</Mylabel>
+      <Label style={{ display: 'block' }}>Size</Label>
       <DefaultInput
         sx={{ width: '50%', padding: '5px 0 20px' }}
         placeholder="width"

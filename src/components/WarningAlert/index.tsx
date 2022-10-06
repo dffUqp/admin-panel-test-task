@@ -9,13 +9,13 @@ import DialogTitle from '@mui/material/DialogTitle';
 type WarningAlertProps = {
   isOpen: boolean;
   toggle: () => void;
-  toogleWithAction: () => void;
+  toggleWithAction: () => void;
 };
 
 const WarningAlert = ({
   isOpen,
   toggle,
-  toogleWithAction,
+  toggleWithAction,
 }: WarningAlertProps) => {
   if (!isOpen) {
     return null;
@@ -36,7 +36,7 @@ const WarningAlert = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={toggle}>Cancel</Button>
-        <Button onClick={toogleWithAction}>Confirm</Button>
+        <Button onClick={toggleWithAction}>Confirm</Button>
       </DialogActions>
     </Dialog>
   );

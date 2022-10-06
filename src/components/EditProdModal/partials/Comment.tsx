@@ -27,7 +27,6 @@ const Comment = (comment: ProductComment) => {
         justifyContent: 'space-between',
         alignItems: 'center',
       }}
-      key={comment.id}
     >
       <CommentText>{comment.description}</CommentText>
       <CommentText>{comment.date}</CommentText>
@@ -35,7 +34,11 @@ const Comment = (comment: ProductComment) => {
       <IconButton onClick={toggleWarnAlert}>
         <DeleteIcon />
       </IconButton>
-      <WarningAlert isOpen={warnAlert} toggle={toggleWarnAlert} toogleWithAction={deleteFunc}/>
+      <WarningAlert
+        isOpen={warnAlert}
+        toggle={toggleWarnAlert}
+        toggleWithAction={deleteFunc}
+      />
     </Box>
   );
 };

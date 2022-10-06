@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import { DefaultInputProps } from './DefaultInput.props';
 import { styled, experimental_sx as sx } from '@mui/system';
 
-export const Mylabel = styled('label')(
+export const Label = styled('label')(
   sx({ color: 'text.primary', fontFamily: 'Roboto', fontSize: '17px' })
 );
 
@@ -14,9 +14,9 @@ const DefaultInput = forwardRef(
     return (
       <>
         {labelName && (
-          <Mylabel htmlFor={`outlined-hidden-label-by ${id}`}>
+          <Label htmlFor={`outlined-hidden-label-by ${id}`}>
             {labelName}
-          </Mylabel>
+          </Label>
         )}
         <TextField
           hiddenLabel
