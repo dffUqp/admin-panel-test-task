@@ -7,7 +7,7 @@ export const productApi = createApi({
   tagTypes: ['Product'],
   endpoints: (build) => ({
     getProducts: build.query<IProduct[], void | number>({
-      query: (limit = 20) => `/products?limit=${limit}`,
+      query: (limit = 20) => `/products?_limit=${limit}`,
       providesTags: (result) => ['Product'],
     }),
     createProduct: build.mutation<IProduct, EditedProduct>({
