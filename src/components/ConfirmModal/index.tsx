@@ -6,21 +6,22 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-type WarningAlertProps = {
+type ConfirmModalProps = {
   isOpen: boolean;
   toggle: () => void;
   toggleWithAction: () => void;
 };
 
-const WarningAlert = ({
+const ConfirmModal = ({
   isOpen,
   toggle,
   toggleWithAction,
-}: WarningAlertProps) => {
+}: ConfirmModalProps) => {
   if (!isOpen) {
     return null;
   }
-
+  
+  
   return (
     <Dialog
       open={isOpen}
@@ -42,4 +43,4 @@ const WarningAlert = ({
   );
 };
 
-export default WarningAlert;
+export default ConfirmModal;

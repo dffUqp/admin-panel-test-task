@@ -5,13 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import AddProdModal from '../AddProdModal';
+import { useToggle } from '../../hooks/useToggle';
 
 const Header = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const toggleModal = () => {
-    setOpen((prev) => !prev);
-  };
+  const [isOpen, toggleModal] = useToggle();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -23,7 +20,7 @@ const Header = () => {
           <Button variant="outlined" sx={{ ml: 'auto' }} onClick={toggleModal}>
             Add Product
           </Button>
-          <AddProdModal isOpen={open} toggleModal={toggleModal} />
+          <AddProdModal isOpen={isOpen} toggleModal={toggleModal} />
         </Toolbar>
       </AppBar>
     </Box>

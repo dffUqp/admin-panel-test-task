@@ -5,18 +5,16 @@ import { Box } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CommentText from './CommentText';
-import WarningAlert from '../../WarningAlert';
+import ConfirmModal from '../../ConfirmModal';
+import { useToggle } from '../../../hooks/useToggle';
 
 const Comment = (comment: ProductComment) => {
   const [deleteComent] = useDeleteCommentMutation();
-  const [warnAlert, setWarnAlert] = React.useState(false);
+  const [confimModal, toggleConfimModal] = useToggle();
 
-  const toggleWarnAlert = () => {
-    setWarnAlert((prev) => !prev);
-  };
 
   const deleteFunc = () => {
-    toggleWarnAlert();
+    toggleConfimModal();
     deleteComent(comment.id);
   };
 
@@ -31,12 +29,12 @@ const Comment = (comment: ProductComment) => {
       <CommentText>{comment.description}</CommentText>
       <CommentText>{comment.date}</CommentText>
 
-      <IconButton onClick={toggleWarnAlert}>
+      <IconButton onClick={toggleConfimModal}>
         <DeleteIcon />
       </IconButton>
-      <WarningAlert
-        isOpen={warnAlert}
-        toggle={toggleWarnAlert}
+      <ConfirmModal
+        isOpen={confimModal}
+        toggle={toggleConfimModal}
         toggleWithAction={deleteFunc}
       />
     </Box>

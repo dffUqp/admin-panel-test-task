@@ -6,26 +6,19 @@ import { TableCell, TableRow } from '@mui/material';
 import { IProduct } from '../../ts/productTypes';
 import { useDeleteProductMutation } from '../../services/product';
 import EditProdModal from '../EditProdModal';
-import WarningAlert from '../WarningAlert';
+import ConfirmModal from '../ConfirmModal';
+import { useToggle } from '../../hooks/useToggle';
 
 const ProductView = (currentProduct: IProduct) => {
   const { id, name, count, weight, imageUrl } = currentProduct;
 
-  const [editModaOpen, setEditModaOpen] = React.useState(false);
-  const [warnAlert, setWarnAlert] = React.useState(false);
+  const [editModaOpen, toggleEditModal] = useToggle();
+  const [confimModal, toggleConfimModal] = useToggle();
 
   const [deleteProduct] = useDeleteProductMutation();
 
-  const toggleWarnAlert = () => {
-    setWarnAlert((prev) => !prev);
-  };
-
-  const toggleEditModal = () => {
-    setEditModaOpen((prev) => !prev);
-  };
-
   const deleteFunc = () => {
-    toggleWarnAlert();
+    toggleConfimModal();
     deleteProduct(id);
   };
 
@@ -53,12 +46,13 @@ const ProductView = (currentProduct: IProduct) => {
           editValue={currentProduct}
         />
 
-        <IconButton aria-label="delete" color="error" onClick={toggleWarnAlert}>
+        <IconButton aria-label="delete" color="error" onClick={toggleConfimModal}>
           <DeleteIcon />
         </IconButton>
-        <WarningAlert
-          isOpen={warnAlert}
-          toggle={toggleWarnAlert}
+
+        <ConfirmModal
+          isOpen={confimModal}
+          toggle={toggleConfimModal}
           toggleWithAction={deleteFunc}
         />
       </TableCell>
