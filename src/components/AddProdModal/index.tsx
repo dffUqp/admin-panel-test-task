@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import { EditedProduct } from '../../ts/productTypes';
 import { useCreateProductMutation } from '../../services/product';
 import ModalContent from '../ModalContent';
+import { useMount } from '../../hooks/useMount';
 
 type AddProdModalProps = {
   isOpen: boolean;
@@ -24,8 +25,15 @@ const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
   });
 
   const [createdProduct] = useCreateProductMutation();
+  const mounted = useMount(isOpen);
 
-  if (!isOpen) {
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
+
+  if (!mounted) {
     return null;
   }
 
@@ -34,18 +42,13 @@ const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
     reset();
   };
 
-  const toggleWithReset = () => {
-    toggleModal();
-    reset();
-  };
-
   return (
-    <Dialog open={isOpen} onClose={toggleWithReset} maxWidth="md">
+    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
       <DialogTitle>Add New Product</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent register={register} errors={errors} />
         <DialogActions>
-          <Button onClick={toggleWithReset}>Cancel</Button>
+          <Button onClick={toggleModal}>Cancel</Button>
           <Button type="submit">Add</Button>
         </DialogActions>
       </form>

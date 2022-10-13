@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { useMount } from '../../hooks/useMount';
 
 type ConfirmModalProps = {
   isOpen: boolean;
@@ -17,10 +18,11 @@ const ConfirmModal = ({
   toggle,
   toggleWithAction,
 }: ConfirmModalProps) => {
-  if (!isOpen) {
+  const mounted = useMount(isOpen);
+
+  if (!mounted) {
     return null;
   }
-  
   
   return (
     <Dialog

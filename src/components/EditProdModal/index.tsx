@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -9,6 +9,7 @@ import { useUpdateProductMutation } from '../../services/product';
 import ModalContent from '../ModalContent';
 import Comments from './partials/Comments';
 import { EditProdModalProps } from './EditProdModal.props';
+import { useMount } from '../../hooks/useMount';
 
 const EditProdModal = ({
   isOpen,
@@ -26,7 +27,15 @@ const EditProdModal = ({
 
   const [updateProduct] = useUpdateProductMutation();
 
-  if (!isOpen) {
+  const mounted = useMount(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
+
+  if (!mounted) {
     return null;
   }
 
@@ -43,16 +52,11 @@ const EditProdModal = ({
       updateProduct({ product: data, id: editValue.id });
     }
 
-    toggleModal()
-  };
-
-  const toggleWithReset = () => {
     toggleModal();
-    reset();
   };
 
   return (
-    <Dialog open={isOpen} onClose={toggleWithReset} maxWidth="md">
+    <Dialog open={isOpen} onClose={toggleModal} maxWidth="md">
       <DialogTitle>Edit Product Info</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ModalContent
@@ -62,7 +66,7 @@ const EditProdModal = ({
         />
         <Comments productId={editValue.id} comments={editValue.comments} />
         <DialogActions>
-          <Button onClick={toggleWithReset}>Cancel</Button>
+          <Button onClick={toggleModal}>Cancel</Button>
           <Button type="submit">Edit</Button>
         </DialogActions>
       </form>
