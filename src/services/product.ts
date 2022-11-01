@@ -3,10 +3,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const productApi = createApi({
   reducerPath: 'api/prodcut',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000' }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   tagTypes: ['Product'],
   endpoints: (build) => ({
-    getProducts: build.query<IProduct[], void | number>({
+    getProducts: build.query<IProduct[], void | number>({      
       query: (limit = 20) => `/products?_limit=${limit}`,
       providesTags: (result) => ['Product'],
     }),

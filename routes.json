@@ -1,5 +1,0 @@
-{
-  "/products/": "/products?_embed=comments",
-  "/products/:id": "/products/:id?_embed=comments",
-  "/products\\?_limit=:limit": "/products?_embed=comments&_limit=:limit"
-}

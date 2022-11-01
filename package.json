@@ -1,5 +1,5 @@
 {
-  "name": "shope-test-task",
+  "name": "admin-panel-test-task",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,6 @@
     "@types/node": "^16.11.62",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "json-server": "^0.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",
@@ -29,11 +28,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\"  \"npm run server\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 4000 --routes routes.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,8 +50,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "concurrently": "^7.4.0"
   }
 }
