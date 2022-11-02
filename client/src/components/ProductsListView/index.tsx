@@ -17,11 +17,19 @@ type ProductsListViewProps = {
 const ProductsListView = ({
   sortMethod,
 }: ProductsListViewProps): JSX.Element => {
-  const { data } = useGetProductsQuery();
+  const { data, isError, isLoading } = useGetProductsQuery();
 
   const sortedData = [...(data || [])].sort((a, b) =>
     sortMethod === 'count' ? a.count - b.count : a.name.localeCompare(b.name)
   );
+
+  if (isLoading || isError) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Container maxWidth="xl">
