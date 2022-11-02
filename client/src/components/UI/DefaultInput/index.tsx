@@ -1,4 +1,4 @@
-import React, { forwardRef, useId } from 'react';
+import { forwardRef, useId } from 'react';
 import { TextField } from '@mui/material';
 import { DefaultInputProps } from './DefaultInput.props';
 import { styled, experimental_sx as sx } from '@mui/system';
@@ -8,15 +8,13 @@ export const Label = styled('label')(
 );
 
 const DefaultInput = forwardRef(
-  ({ labelName, ...props }: DefaultInputProps, ref) => {
+  ({ labelName, ...props }: DefaultInputProps, ref): JSX.Element => {
     const id = useId();
 
     return (
       <>
         {labelName && (
-          <Label htmlFor={`outlined-hidden-label-by ${id}`}>
-            {labelName}
-          </Label>
+          <Label htmlFor={`outlined-hidden-label-by ${id}`}>{labelName}</Label>
         )}
         <TextField
           hiddenLabel

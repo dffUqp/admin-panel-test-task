@@ -9,7 +9,7 @@ import EditProdModal from '../EditProdModal';
 import ConfirmModal from '../ConfirmModal';
 import { useToggle } from '../../hooks/useToggle';
 
-const ProductView = (currentProduct: IProduct) => {
+const ProductView = (currentProduct: IProduct): JSX.Element => {
   const { id, name, count, weight, imageUrl } = currentProduct;
 
   const [editModaOpen, toggleEditModal] = useToggle();

@@ -9,7 +9,7 @@ type DrowDownProps = {
   setValue: (value: string) => void;
 } & SelectProps;
 
-const DropDown = ({ options, value, setValue }: DrowDownProps) => {
+const DropDown = ({ options, value, setValue }: DrowDownProps): JSX.Element => {
   return (
     <FormControl sx={{ padding: '10px' }}>
       <Select

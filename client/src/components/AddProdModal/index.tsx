@@ -14,7 +14,10 @@ type AddProdModalProps = {
   toggleModal: () => void;
 };
 
-const AddProdModal = ({ isOpen, toggleModal }: AddProdModalProps) => {
+const AddProdModal = ({
+  isOpen,
+  toggleModal,
+}: AddProdModalProps): JSX.Element | null => {
   const {
     register,
     formState: { errors },

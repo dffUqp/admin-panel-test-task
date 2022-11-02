@@ -15,7 +15,7 @@ const EditProdModal = ({
   isOpen,
   toggleModal,
   editValue,
-}: EditProdModalProps) => {
+}: EditProdModalProps): JSX.Element | null => {
   const {
     register,
     formState: { errors },

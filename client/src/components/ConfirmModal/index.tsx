@@ -17,13 +17,13 @@ const ConfirmModal = ({
   isOpen,
   toggle,
   toggleWithAction,
-}: ConfirmModalProps) => {
+}: ConfirmModalProps): JSX.Element | null => {
   const mounted = useMount(isOpen);
 
   if (!mounted) {
     return null;
   }
-  
+
   return (
     <Dialog
       open={isOpen}

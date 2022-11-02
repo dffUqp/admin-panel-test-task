@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import AddProdModal from '../AddProdModal';
 import { useToggle } from '../../hooks/useToggle';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const [isOpen, toggleModal] = useToggle();
 
   return (

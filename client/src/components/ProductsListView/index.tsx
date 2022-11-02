@@ -8,13 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useGetProductsQuery } from '../../services/product';
-import { Box, Container } from '@mui/material';
+import { Box, CircularProgress, Container } from '@mui/material';
 
 type ProductsListViewProps = {
   sortMethod: string;
 };
 
-const ProductsListView = ({ sortMethod }: ProductsListViewProps) => {
+const ProductsListView = ({
+  sortMethod,
+}: ProductsListViewProps): JSX.Element => {
   const { data } = useGetProductsQuery();
 
   const sortedData = [...(data || [])].sort((a, b) =>

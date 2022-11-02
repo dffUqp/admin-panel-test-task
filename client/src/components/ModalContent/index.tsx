@@ -14,7 +14,7 @@ const ModalContent = ({
   register,
   errors,
   defaultValues,
-}: ModalContentProps) => {
+}: ModalContentProps): JSX.Element => {
   return (
     <DialogContent sx={{ maxWidth: '600px' }}>
       <DefaultInput
