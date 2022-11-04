@@ -35,4 +35,4 @@ To get minimalistic UI kit, the project use [MaterialUI](https://mui.com/materia
 
 [RTK](https://redux-toolkit.js.org/) and [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) take responsibility for storing data and sending requests.
 
-The server was created with a [JSON server](https://www.npmjs.com/package/json-server) and deployed on [Heroku](www.heroku.com).
+The server was created with a [JSON server](https://www.npmjs.com/package/json-server) and deployed on [Heroku](https://www.heroku.com).
