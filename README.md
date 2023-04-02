@@ -1,14 +1,14 @@
-# Getting Started with Admin Panel App
+# Admin Panel App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).  
 
-[DEMO LINK](https://dffuqp.github.io/admin-panel-test-task/) (Server deployed with Heroku, sorry for the long waiting)
+[DEMO LINK](https://dffuqp.github.io/admin-panel-test-task/) 
 
 ## About
 This app simulates an admin panel where you can work with data(add, delete and edit items).
 
-![](https://cdn.discordapp.com/attachments/481837341942611969/1028566838830977064/unknown_1.png)
-
+![](https://user-images.githubusercontent.com/96138503/229381916-196b02f5-e8f5-49b2-950f-1c19880a338c.png)
+![](https://user-images.githubusercontent.com/96138503/229381946-3af366b6-6bb4-4182-95e3-c7817e8bc55e.png)
 
 ## Available Scripts
 
@@ -35,4 +35,4 @@ To get minimalistic UI kit, the project use [MaterialUI](https://mui.com/materia
 
 [RTK](https://redux-toolkit.js.org/) and [RTK Query](https://redux-toolkit.js.org/rtk-query/overview) take responsibility for storing data and sending requests.
 
-The server was created with a [JSON server](https://www.npmjs.com/package/json-server) and deployed on [Heroku](https://www.heroku.com).
+The server was created with a [JSON server](https://www.npmjs.com/package/json-server) and deployed on [Railway](https://railway.app/).
