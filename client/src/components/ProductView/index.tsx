@@ -12,13 +12,13 @@ import { useToggle } from '../../hooks/useToggle';
 const ProductView = (currentProduct: IProduct): JSX.Element => {
   const { id, name, count, weight, imageUrl } = currentProduct;
 
-  const [editModaOpen, toggleEditModal] = useToggle();
-  const [confimModal, toggleConfimModal] = useToggle();
+  const [editModalOpen, toggleEditModal] = useToggle();
+  const [confirmModal, toggleConfirmModal] = useToggle();
 
   const [deleteProduct] = useDeleteProductMutation();
 
   const deleteFunc = () => {
-    toggleConfimModal();
+    toggleConfirmModal();
     deleteProduct(id);
   };
 
@@ -41,18 +41,22 @@ const ProductView = (currentProduct: IProduct): JSX.Element => {
           <EditIcon />
         </IconButton>
         <EditProdModal
-          isOpen={editModaOpen}
+          isOpen={editModalOpen}
           toggleModal={toggleEditModal}
           editValue={currentProduct}
         />
 
-        <IconButton aria-label="delete" color="error" onClick={toggleConfimModal}>
+        <IconButton
+          aria-label="delete"
+          color="error"
+          onClick={toggleConfirmModal}
+        >
           <DeleteIcon />
         </IconButton>
 
         <ConfirmModal
-          isOpen={confimModal}
-          toggle={toggleConfimModal}
+          isOpen={confirmModal}
+          toggle={toggleConfirmModal}
           toggleWithAction={deleteFunc}
         />
       </TableCell>

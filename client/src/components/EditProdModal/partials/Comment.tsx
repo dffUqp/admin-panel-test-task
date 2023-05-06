@@ -9,13 +9,12 @@ import ConfirmModal from '../../ConfirmModal';
 import { useToggle } from '../../../hooks/useToggle';
 
 const Comment = (comment: ProductComment) => {
-  const [deleteComent] = useDeleteCommentMutation();
-  const [confimModal, toggleConfimModal] = useToggle();
-
+  const [deleteComment] = useDeleteCommentMutation();
+  const [confirmModal, toggleConfirmModal] = useToggle();
 
   const deleteFunc = () => {
-    toggleConfimModal();
-    deleteComent(comment.id);
+    toggleConfirmModal();
+    deleteComment(comment.id);
   };
 
   return (
@@ -29,12 +28,12 @@ const Comment = (comment: ProductComment) => {
       <CommentText>{comment.description}</CommentText>
       <CommentText>{comment.date}</CommentText>
 
-      <IconButton onClick={toggleConfimModal}>
+      <IconButton onClick={toggleConfirmModal}>
         <DeleteIcon />
       </IconButton>
       <ConfirmModal
-        isOpen={confimModal}
-        toggle={toggleConfimModal}
+        isOpen={confirmModal}
+        toggle={toggleConfirmModal}
         toggleWithAction={deleteFunc}
       />
     </Box>

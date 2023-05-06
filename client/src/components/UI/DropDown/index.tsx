@@ -3,13 +3,13 @@ import { MenuItem, FormControl, Select } from '@mui/material';
 import { SelectProps } from '@mui/material';
 import { DropDownOption } from '../../../ts/dropDownTypes';
 
-type DrowDownProps = {
+type DropDownProps = {
   options: DropDownOption[];
   value: string;
   setValue: (value: string) => void;
 } & SelectProps;
 
-const DropDown = ({ options, value, setValue }: DrowDownProps): JSX.Element => {
+const DropDown = ({ options, value, setValue }: DropDownProps): JSX.Element => {
   return (
     <FormControl sx={{ padding: '10px' }}>
       <Select

@@ -2,11 +2,11 @@ import { EditedComment, EditedProduct, IProduct } from './../ts/productTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const productApi = createApi({
-  reducerPath: 'api/prodcut',
+  reducerPath: 'api/product',
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
   tagTypes: ['Product'],
   endpoints: (build) => ({
-    getProducts: build.query<IProduct[], void | number>({      
+    getProducts: build.query<IProduct[], void | number>({
       query: (limit = 20) => `/products?_limit=${limit}`,
       providesTags: (result) => ['Product'],
     }),
@@ -37,8 +37,8 @@ export const productApi = createApi({
       invalidatesTags: ['Product'],
     }),
     deleteComment: build.mutation<IProduct, number>({
-      query: (comentId) => ({
-        url: `/comments/${comentId}`,
+      query: (commentId) => ({
+        url: `/comments/${commentId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Product'],
